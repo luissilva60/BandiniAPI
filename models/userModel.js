@@ -3,7 +3,21 @@ const express = require('express');
 const {log} = require("debug");
 const app = express();
 
+
+
+
+
 client.connect();
+
+
+
+
+
+
+
+
+
+
 module.exports.getUsers = async function() {
     try {
         let sql = `select *, to_char(user_bdate, \'DD-MM-YYYY\') bdate, roles_name from Users

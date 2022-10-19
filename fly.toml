@@ -39,3 +39,13 @@ processes = []
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
+
+    [[services]]
+      internal_port = 5432 # Postgres instance
+      protocol = "tcp"
+
+
+    # Open port 10000 for plaintext connections.
+    [[services.ports]]
+      handlers = []
+      port = 10000

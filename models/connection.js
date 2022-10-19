@@ -1,7 +1,19 @@
 var pg = require('pg');
-
-const connectionString = "postgres://bandinidb_user:2GIcnwprve1KSohHnujt46vz5JV8hEq1@dpg-cd5i4jirrk0dfu91kkqg-a.oregon-postgres.render.com/bandinidb\n"
+const { Sequelize } = require('sequelize');
+const connectionString = process.env.DATABASE_URL
 const Pool = pg.Pool
+
+
+// Option 1: Passing a connection URI
+
+const sequelize = new Sequelize(connectionString) // Example for postgres
+
+
+
+
+
+
+
 const pool = new Pool({
     connectionString,
     max: 10,
@@ -11,4 +23,11 @@ const pool = new Pool({
     }
 })
 
+await pool.connect()
+const res = await pool.query('SELECT $1::text as message', ['Hello world!'])
+console.log(res.rows[0].message) // Hello world!
+await pool.end()
+
+
 module.exports = pool;
+module.exports =  sequelize;
