@@ -14,38 +14,38 @@ processes = []
   allowed_public_ports = []
   auto_rollback = true
 
-[[servicesModel]]
+[[services]]
   http_checks = []
   internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
-  [servicesModel.concurrency]
+  [services.concurrency]
     hard_limit = 25
     soft_limit = 20
     type = "connections"
 
-  [[servicesModel.ports]]
+  [[services.ports]]
     force_https = true
     handlers = ["http"]
     port = 80
 
-  [[servicesModel.ports]]
+  [[services.ports]]
     handlers = ["tls", "http"]
     port = 443
 
-  [[servicesModel.tcp_checks]]
+  [[services.tcp_checks]]
     grace_period = "1s"
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
 
-    [[servicesModel]]
+    [[services]]
       internal_port = 5432 # Postgres instance
       protocol = "tcp"
 
 
     # Open port 10000 for plaintext connections.
-    [[servicesModel.ports]]
+    [[services.ports]]
       handlers = []
       port = 10000

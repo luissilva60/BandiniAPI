@@ -2,12 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const routes = {
-    users: require('./routes/userRoutes'),
-    //instruments: require('./routes/instruments'),
-    //orchestras: require('./routes/orchestras'),
-
-    // Add more routes here...
-    // items: require('./routes/items'),
+    users: require('./routes/usersRoutes'),
+    stores: require('./routes/storesRoutes'),
+    states: require('./routes/statesRoutes'),
+    services: require('./routes/servicesRoutes'),
+    roles: require('./routes/rolesRoutes'),
+    receipts: require('./routes/receiptsRoutes'),
+    products: require('./routes/productsRoutes'),
+    photos: require('./routes/photosRoutes')
 };
 
 const app = express();
