@@ -1,80 +1,80 @@
 function applyExtraSetup(sequelize) {
-    const { user, store, state, service, role, receipt, product, photo } = sequelize.models;
+    const { users, stores, states, services, roles, receipts, products, photos } = sequelize.models;
 
-    role.hasOne(user);
-    user.belongsTo(role, {
+    roles.hasOne(users);
+    users.belongsTo(roles, {
         foreignKey: {
             name: 'user_role_id'
         }
     });
 
-    store.hasMany(photo);
-    photo.belongsTo(store, {
+    stores.hasMany(photos);
+    photos.belongsTo(stores, {
         foreignKey: {
             name: 'photo_store_id'
         }
     })
 
-    product.hasMany(photo);
-    photo.belongsTo(product, {
+    products.hasMany(photos);
+    photos.belongsTo(products, {
         foreignKey: {
             name: 'photo_product_id'
         }
     })
 
-    service.hasMany(photo);
-    photo.belongsTo(service, {
+    services.hasMany(photos);
+    photos.belongsTo(services, {
         foreignKey: {
             name: 'photo_service_id'
         }
     })
 
-    store.hasMany(product);
-    product.belongsTo(store,{
+    stores.hasMany(products);
+    products.belongsTo(stores,{
         foreignKey: {
             name: 'product_store_id'
         }
     })
 
-    user.hasMany(receipt);
-    receipt.belongsTo(user,{
+    users.hasMany(receipts);
+    receipts.belongsTo(users,{
         foreignKey: {
             name: 'receipt_user_id'
         }
     })
 
-    service.hasMany(receipt);
-    receipt.belongsTo(service,{
+    services.hasMany(receipts);
+    receipts.belongsTo(services,{
         foreignKey: {
             name: 'receipt_service_id'
         }
     })
 
-    product.hasMany(receipt);
-    receipt.belongsTo(product,{
+    products.hasMany(receipts);
+    receipts.belongsTo(products,{
         foreignKey: {
             name: 'receipt_product_id'
         }
     })
 
-    store.hasMany(service);
-    service.belongsTo(store, {
+    stores.hasMany(services);
+    services.belongsTo(stores, {
         foreignKey: {
             name: 'service_store_id'
         }
     })
 
-    state.hasOne(service);
-    service.belongsTo(state, {
+    states.hasOne(services);
+    services.belongsTo(states, {
         foreignKey: {
             name: 'service_state_id'
         }
     })
 
-    user.hasMany(store);
-    store.belongsTo(user, {
+    users.hasMany(stores);
+    stores.belongsTo(users, {
         foreignKey: {
-            name: 'store_user_id'
+            name: 'stores_user_id'
         }
     })
 

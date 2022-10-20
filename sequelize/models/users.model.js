@@ -1,33 +1,35 @@
-const Sequelize = require('sequelize')
-const database = require('./connection')
+const { DataTypes } = require('sequelize');
 
-const UsersModel = database.define('users', {
-    user_id: {
-        type: Sequelize.INTEGER,
-        autoincrement: true,
-        allowNull: false,
-        primaryKey: true
+// We export a function that defines the model.
+// This function will automatically receive as parameter the Sequelize connection object.
+module.exports = (sequelize) => {
+        sequelize.define('users', {
+        user_id: {
+            type: DataTypes.INTEGER,
+            autoincrement: true,
+            allowNull: false,
+            primaryKey: true
 
-    },
-    user_name: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    user_bdate: {
-        type: Sequelize.DATE,
-        allowNull: false
-    },
-    user_email: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    user_password: {
-        type: Sequelize.STRING,
-        allowNull: false
-    }
+        },
+        user_name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        user_bdate: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        user_email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        user_password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
 
 
-})
+    });
+};
 
 
-module.exports = UsersModel;

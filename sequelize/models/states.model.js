@@ -1,19 +1,19 @@
-const Sequelize = require('sequelize')
-const database = require('./connection')
+const { DataTypes } = require('sequelize');
 
-const statesModel = database.define('states', {
-    state_id: {
-        type: Sequelize.INTEGER,
-        autoincrement: true,
-        allowNull: false,
-        primaryKey: true
+module.exports = (sequelize) => {
+    sequelize.define('states', {
+        state_id: {
+            type: DataTypes.INTEGER,
+            autoincrement: true,
+            allowNull: false,
+            primaryKey: true
 
-    },
-    state_name: {
-        type: Sequelize.STRING(60),
-        allowNull: false
-    }
-})
+        },
+        state_name: {
+            type: DataTypes.STRING(60),
+            allowNull: false
+        }
+    })
+}
 
 
-module.exports = statesModel;
