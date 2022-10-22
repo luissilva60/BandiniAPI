@@ -1,10 +1,25 @@
 const { models } = require('../../sequelize');
 const { getIdParam } = require('../helpers');
+const { DataTypes } = require('sequelize')
 
 async function getAll(req, res) {
-  const allusers = await models.users.findAll();
-  res.status(200).json(allusers);
+  let allUsers = await models.users.findAll();
+
+  console.log(allUsers)
+  res.status(200).json(allUsers);
 };
+
+/*sequelize.sync().then(() => {
+
+  Book.findAll().then(res => {
+    console.log(res)
+  }).catch((error) => {
+    console.error('Failed to retrieve data : ', error);
+  });
+
+}).catch((error) => {
+  console.error('Unable to create table : ', error);
+});*/
 
 async function getById(req, res) {
   const id = getIdParam(req);

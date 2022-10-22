@@ -1,8 +1,25 @@
 const { Sequelize } = require('sequelize');
 const { applyExtraSetup } = require('./extra-setup');
 const connectionString = process.env.DATABASE_URL
+const connectionHost = process.env.DATABASE_HOST
+const connectionPW = process.env.DATABASE_PASSWORD
+const connectionUser = process.env.DATABASE_USER
+const connectionPort = process.env.DATABASE_PORT
+const connectionDatabase = process.env.DATABASE_DB
 
 
+
+const sequelize = new Sequelize('bandini', 'bandini', 'OW6N49OjqYV0IGJ', {
+    host: 'top2.nearest.of.bandini-db.internal',
+    port: connectionPort,
+    dialect: 'postgres',
+    logQueryParameters: true,
+    benchmark: true
+});
+
+
+
+/*
 
 const sequelize = new Sequelize({
     dialect: 'postgres',
@@ -10,6 +27,8 @@ const sequelize = new Sequelize({
     logQueryParameters: true,
     benchmark: true
 });
+*/
+
 
 const modelDefiners = [
     require('./models/users.model'),
