@@ -14,7 +14,11 @@ const sequelize = new Sequelize('bandini', 'bandini', 'OW6N49OjqYV0IGJ', {
     port: connectionPort,
     dialect: 'postgres',
     logQueryParameters: true,
-    benchmark: true
+    benchmark: true,
+    define: {
+        timestamps: false
+    }
+
 });
 
 
@@ -31,14 +35,14 @@ const sequelize = new Sequelize({
 
 
 const modelDefiners = [
-    require('./models/users.model'),
-    require('./models/stores.model'),
-    require('./models/states.model'),
-    require('./models/services.model'),
-    require('./models/roles.model'),
-    require('./models/receipts.model'),
-    require('./models/products.model'),
-    require('./models/photos.model'),
+    users = require('./models/users'),
+    stores = require('./models/stores'),
+    states = require('./models/states'),
+    services = require('./models/services'),
+    roles= require('./models/roles'),
+    receipts = require('./models/receipts'),
+    products = require('./models/products'),
+    photos = require('./models/photos'),
 
     // Add more models here...
     // require('./models/item'),
@@ -46,7 +50,7 @@ const modelDefiners = [
 
 // We define all models according to their files.
 for (const modelDefiner of modelDefiners) {
-    modelDefiner(sequelize);
+    modelDefiner(sequelize, Sequelize);
 }
 
 // We execute any extra setup after the models are defined, such as adding associations.

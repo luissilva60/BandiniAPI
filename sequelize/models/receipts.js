@@ -12,14 +12,6 @@ module.exports = (sequelize) => {
         receipt_date: {
             type: DataTypes.DATE,
             allowNull: false
-        },
-        receipt_user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        receipt_description: {
-            type: DataTypes.STRING(999),
-            allowNull: false
         }
 
     })

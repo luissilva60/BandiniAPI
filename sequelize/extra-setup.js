@@ -1,82 +1,70 @@
 function applyExtraSetup(sequelize) {
     const { users, stores, states, services, roles, receipts, products, photos } = sequelize.models;
 
-    roles.hasOne(users);
-    users.belongsTo(roles, {
-        foreignKey: {
-            name: 'user_role_id'
-        }
+    roles.hasOne(users, {
+        foreignKey: 'user_role_id'
+
     });
+    //users.belongsTo(roles);
 
-    stores.hasMany(photos);
-    photos.belongsTo(stores, {
-        foreignKey: {
-            name: 'photo_store_id'
-        }
-    })
+    stores.hasMany(photos, {
+        foreignKey: 'photo_store_id'
 
-    products.hasMany(photos);
-    photos.belongsTo(products, {
-        foreignKey: {
-            name: 'photo_product_id'
-        }
-    })
+    });
+    //photos.belongsTo(stores)
 
-    services.hasMany(photos);
-    photos.belongsTo(services, {
-        foreignKey: {
-            name: 'photo_service_id'
-        }
-    })
+    products.hasMany(photos, {
+        foreignKey: 'photo_product_id'
 
-    stores.hasMany(products);
-    products.belongsTo(stores,{
-        foreignKey: {
-            name: 'product_store_id'
-        }
-    })
+    });
+    //photos.belongsTo(products)
 
-    users.hasMany(receipts);
-    receipts.belongsTo(users,{
-        foreignKey: {
-            name: 'receipt_user_id'
-        }
-    })
+    services.hasMany(photos, {
+        foreignKey: 'photo_service_id'
 
-    services.hasMany(receipts);
-    receipts.belongsTo(services,{
-        foreignKey: {
-            name: 'receipt_service_id'
-        }
-    })
+    });
+    //photos.belongsTo(services)
 
-    products.hasMany(receipts);
-    receipts.belongsTo(products,{
-        foreignKey: {
-            name: 'receipt_product_id'
-        }
-    })
+    stores.hasMany(products, {
+        foreignKey:'product_store_id'
+    });
+    //products.belongsTo(stores)
 
-    stores.hasMany(services);
-    services.belongsTo(stores, {
-        foreignKey: {
-            name: 'service_store_id'
-        }
-    })
+    users.hasMany(receipts,{
+        foreignKey:  'receipt_user_id'
 
-    states.hasOne(services);
-    services.belongsTo(states, {
-        foreignKey: {
-            name: 'service_state_id'
-        }
-    })
+    });
+    //receipts.belongsTo(users)
 
-    users.hasMany(stores);
-    stores.belongsTo(users, {
-        foreignKey: {
-            name: 'stores_user_id'
-        }
-    })
+    services.hasMany(receipts,{
+        foreignKey:  'receipt_service_id'
+
+    });
+    //receipts.belongsTo(services)
+
+    products.hasMany(receipts,{
+        foreignKey: 'receipt_product_id'
+
+    });
+    //receipts.belongsTo(products)
+
+    stores.hasMany(services, {
+        foreignKey: 'service_store_id'
+    });
+    //services.belongsTo(stores)
+
+    states.hasOne(services, {
+        foreignKey: 'service_state_id'
+
+    });
+    //services.belongsTo(states)
+
+    users.hasMany(stores, {
+        foreignKey: 'store_user_id'
+    });
+    //stores.belongsTo(users)
+
+    //sequelize.sync();
 
 
 

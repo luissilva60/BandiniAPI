@@ -2,8 +2,15 @@ const { models } = require('../../sequelize');
 const { getIdParam } = require('../helpers');
 
 async function getAll(req, res) {
-    const allroles = await models.roles.findAll();
-    res.status(200).json(allroles);
+    try {
+        const allRoles = await models.roles.findAll();
+        res.status(200).json(allRoles);
+        console.log(allRoles)
+    }catch (err) {
+        console.log(err);
+        return { status: 500, data: err };
+    }
+
 };
 
 async function getById(req, res) {
