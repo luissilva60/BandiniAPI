@@ -41,8 +41,14 @@ async function create(req, res) {
   if (req.body.id) {
     res.status(400).send(`Bad request: ID should not be provided, since it is determined automatically by the database.`)
   } else {
-    await models.users.create(req.body);
-    res.status(201).end();
+    try{
+      await models.users.create(req.body);
+      res.status(201).end();
+    }catch (e) {
+      console.log(e)
+      res.status(500).end()
+    }
+
   }
 };
 
@@ -53,7 +59,7 @@ async function update(req, res) {
   if (req.body.id === id) {
     await models.users.update(req.body, {
       where: {
-        id: id
+        user_id: id
       }
     });
     res.status(200).end();
@@ -63,13 +69,20 @@ async function update(req, res) {
 };
 
 async function remove(req, res) {
+
   const id = getIdParam(req);
-  await models.users.destroy({
-    where: {
-      id: id
-    }
-  });
-  res.status(200).end();
+  try{
+    await models.users.destroy({
+      where: {
+        user_id: id
+      }
+    });
+    res.status(200).end();
+  }catch (e) {
+    console.log("ERRO:" + e)
+    res.status(500).end();
+  }
+
 };
 
 module.exports = {
