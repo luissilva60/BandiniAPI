@@ -21,19 +21,6 @@ const sequelize = new Sequelize(connectionUser, connectionDatabase, connectionPW
 
 });
 
-/*const sequelize = new Sequelize('bandini', 'bandini', 'OW6N49OjqYV0IGJ', {
-    host: 'top2.nearest.of.bandini-db.internal',
-    port: connectionPort,
-    dialect: 'postgres',
-    logQueryParameters: true,
-    benchmark: true,
-    define: {
-        timestamps: false
-    }
-
-});*/
-
-
 
 
 
