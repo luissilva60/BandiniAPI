@@ -9,8 +9,8 @@ const connectionDatabase = process.env.DATABASE_DB
 
 
 
-const sequelize = new Sequelize('bandini', 'bandini', 'OW6N49OjqYV0IGJ', {
-    host: 'top2.nearest.of.bandini-db.internal',
+const sequelize = new Sequelize(connectionUser, connectionDatabase, connectionPW, {
+    host: connectionHost,
     port: connectionPort,
     dialect: 'postgres',
     logQueryParameters: true,
@@ -20,6 +20,18 @@ const sequelize = new Sequelize('bandini', 'bandini', 'OW6N49OjqYV0IGJ', {
     }
 
 });
+
+/*const sequelize = new Sequelize('bandini', 'bandini', 'OW6N49OjqYV0IGJ', {
+    host: 'top2.nearest.of.bandini-db.internal',
+    port: connectionPort,
+    dialect: 'postgres',
+    logQueryParameters: true,
+    benchmark: true,
+    define: {
+        timestamps: false
+    }
+
+});*/
 
 
 
