@@ -15,17 +15,6 @@ async function getAll (req, res) {
   }
 }
 
-/*sequelize.sync().then(() => {
-
-  Book.findAll().then(res => {
-    console.log(res)
-  }).catch((error) => {
-    console.error('Failed to retrieve data : ', error);
-  });
-
-}).catch((error) => {
-  console.error('Unable to create table : ', error);
-});*/
 
 async function getById(req, res) {
   const id = getIdParam(req);
@@ -35,7 +24,7 @@ async function getById(req, res) {
   } else {
     res.status(404).send('404 - Not found');
   }
-};
+}
 
 async function create(req, res) {
   if (req.body.id) {
@@ -50,13 +39,13 @@ async function create(req, res) {
     }
 
   }
-};
+}
 
 async function update(req, res) {
   const id = getIdParam(req);
 
   // We only accept an UPDATE request if the `:id` param matches the body `id`
-  if (req.body.id === id) {
+  if (req.body.user_id === id) {
     await models.users.update(req.body, {
       where: {
         user_id: id
@@ -64,9 +53,9 @@ async function update(req, res) {
     });
     res.status(200).end();
   } else {
-    res.status(400).send(`Bad request: param ID (${id}) does not match body ID (${req.body.id}).`);
+    res.status(400).send(`Bad request: param ID (${id}) does not match body ID (${req.body.user_id}).`);
   }
-};
+}
 
 async function remove(req, res) {
 
@@ -83,7 +72,7 @@ async function remove(req, res) {
     res.status(500).end();
   }
 
-};
+}
 
 module.exports = {
   getAll,

@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     sequelize.define('services', {
         service_id: {
             type: DataTypes.INTEGER,
-            autoincrement: true,
+            autoIncrement: true,
             allowNull: false,
             primaryKey: true
 

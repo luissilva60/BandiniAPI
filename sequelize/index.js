@@ -23,15 +23,7 @@ const sequelize = new Sequelize('bandini', 'bandini', 'OW6N49OjqYV0IGJ', {
 
 
 
-/*
 
-const sequelize = new Sequelize({
-    dialect: 'postgres',
-    storage: connectionString,
-    logQueryParameters: true,
-    benchmark: true
-});
-*/
 
 
 const modelDefiners = [

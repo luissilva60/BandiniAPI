@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
     sequelize.define('photos', {
         photo_id: {
             type: DataTypes.INTEGER,
-            autoincrement: true,
+            autoIncrement: true,
             allowNull: false,
             primaryKey: true
 
