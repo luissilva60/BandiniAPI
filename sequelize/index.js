@@ -7,7 +7,6 @@ const connectionUser = process.env.DATABASE_USER
 const connectionPort = process.env.DATABASE_PORT
 const connectionDatabase = process.env.DATABASE_DB
 
-/*
 
 
 const sequelize = new Sequelize(connectionUser, connectionDatabase, connectionPW, {
@@ -21,7 +20,7 @@ const sequelize = new Sequelize(connectionUser, connectionDatabase, connectionPW
     }
 
 });
-*/
+
 
 
 
