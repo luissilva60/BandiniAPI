@@ -3,7 +3,9 @@ const { getIdParam } = require('../helpers');
 
 async function getAll(req, res) {
     try {
-        const allStores = await models.stores.findAll();
+        const allStores = await models.stores.findAll({
+            include: models.users
+        });
         console.log(allStores)
         res.status(200).json(allStores);
     }catch (err) {
@@ -15,7 +17,9 @@ async function getAll(req, res) {
 
 async function getById(req, res) {
     const id = getIdParam(req);
-    const store = await models.stores.findByPk(id);
+    const store = await models.stores.findByPk(id, {
+        include: models.users
+    });
     if (store) {
         res.status(200).json(store);
     } else {

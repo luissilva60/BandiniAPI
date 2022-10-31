@@ -3,7 +3,10 @@ const { getIdParam } = require('../helpers');
 
 async function getAll(req, res) {
     try {
-        const allReceipts = await models.receipts.findAll();
+        const allReceipts = await models.receipts.findAll({
+            include: [models.services, models.products, models.users]
+
+        });
         res.status(200).json(allReceipts);
     }catch (err) {
         console.log(err);
@@ -14,7 +17,10 @@ async function getAll(req, res) {
 
 async function getById(req, res) {
     const id = getIdParam(req);
-    const receipt = await models.receipts.findByPk(id);
+    const receipt = await models.receipts.findByPk(id, {
+        include: [models.services, models.products, models.users]
+
+    });
     if (receipt) {
         res.status(200).json(receipt);
     } else {

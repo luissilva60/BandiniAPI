@@ -3,7 +3,10 @@ const { getIdParam } = require('../helpers');
 
 async function getAll(req, res) {
     try{
-        const allServices = await models.services.findAll();
+        const allServices = await models.services.findAll( {
+            include: [models.stores, models.states]
+
+        });
         res.status(200).json(allServices)
     }catch (err) {
         console.log(err);
@@ -14,7 +17,10 @@ async function getAll(req, res) {
 
 async function getById(req, res) {
     const id = getIdParam(req);
-    const service = await models.services.findByPk(id);
+    const service = await models.services.findByPk(id, {
+        include: [models.stores, models.states]
+
+    });
     if (service) {
         res.status(200).json(service);
     } else {

@@ -3,7 +3,10 @@ const { getIdParam } = require('../helpers');
 
 async function getAll(req, res) {
     try {
-        let allPhotos = await models.photos.findAll();
+        let allPhotos = await models.photos.findAll({
+            include: [models.stores, models.products, models.services]
+
+        });
         res.status(200).json(allPhotos);
     }catch (err) {
         console.log(err);
@@ -14,7 +17,10 @@ async function getAll(req, res) {
 
 async function getById(req, res) {
     const id = getIdParam(req);
-    const photo = await models.photos.findByPk(id);
+    const photo = await models.photos.findByPk(id, {
+        include: [models.stores, models.products, models.services]
+
+    });
     if (photo) {
         res.status(200).json(photo);
     } else {

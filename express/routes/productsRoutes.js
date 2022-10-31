@@ -3,7 +3,10 @@ const { getIdParam } = require('../helpers');
 
 async function getAll(req, res) {
     try {
-        let allProducts = await models.products.findAll();
+        let allProducts = await models.products.findAll({
+            include: models.stores
+
+        });
         res.status(200).json(allProducts);
     }catch (err) {
         console.log(err);

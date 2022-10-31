@@ -1,12 +1,14 @@
 const { models } = require('../../sequelize');
 const { getIdParam } = require('../helpers');
-const user = models.toString();
+
 
 
 async function getAll (req, res) {
   try {
-    console.log(user)
-    let allUsers = await models.users.findAll()
+
+    const allUsers = await models.users.findAll({
+      include: models.roles
+    })
     console.log(allUsers)
     res.status(200).json(allUsers);
   }catch (err) {
@@ -16,9 +18,12 @@ async function getAll (req, res) {
 }
 
 
+
 async function getById(req, res) {
   const id = getIdParam(req);
-  const user = await models.users.findByPk(id);
+  const user = await models.users.findByPk(id, {
+    include: models.roles
+  });
   if (user) {
     res.status(200).json(user);
   } else {
